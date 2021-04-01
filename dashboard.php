@@ -22,8 +22,22 @@
                 <a class="navbar-brand ml-3" href="#">Inventory Management System</a>
 
                 <ul id="navbar-nav" class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="dashboard.php">Home</a>
+                    </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="logout.php">Logout</a>
+                        <a class="nav-link" href="insert_record.php">Insert</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="update_record.html">Update</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="reorder.html">Re-order</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php">Logout</a>
                     </li>
                 </ul>
             </nav>
@@ -36,138 +50,36 @@
             </div>
 
             <div class="main-body">
-                <div class="action">
-                    <ul id="action-nav">
-                        <li>
-                            <a href="insert_record.html"><button class="btn btn-primary">Insert New Record</button></a>
-                        </li>
-                        <li>
-                            <a href="update_record.html"><button class="btn btn-success">Update Existing
-                                    Record</button></a>
-                        </li>
-                        <li>
-                            <a href="reorder.html"><button class="btn btn-warning">Re-Order the Stock</button></a>
-                        </li>
-                    </ul>
-                </div>
-
                 <div class="display-data table-responsive">
                     <table class="table table-bordered table-hover">
                         <thead class="thead-dark">
                             <th>Sr. No</th>
-                            <th>Id</th>
+                            <th>Product Id</th>
                             <th>Name</th>
+                            <th>Category</th>
                             <th>Description</th>
+                            <th>Purchase Date</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
                         </thead>
                         <tbody>
+                            <?php                            
+                                $sql_query = "SELECT * FROM tblproducts where uid = '$login_id'";
+                                $resultset = mysqli_query($con, $sql_query) or die("database error:". mysqli_error($conn));
+                                $i=0;
+                                while( $row = mysqli_fetch_assoc($resultset) ) {
+                            ?>
                             <tr>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
+                                <td><?php echo ++$i; ?></td>
+                                <td><?php echo $row['pid'] ?></td>
+                                <td><?php echo $row['pname'] ?></td>
+                                <td><?php echo $row['category'] ?></td>
+                                <td><?php echo $row['descrip'] ?></td>
+                                <td><?php echo $row['pdate'] ?></td>
+                                <td><?php echo $row['price'] ?></td>
+                                <td><?php echo $row['qty'] ?></td>
                             </tr>
-                            <tr>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                            </tr>
-                            <tr>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                            </tr>
-                            <tr>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                            </tr>
-                            <tr>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                            </tr>
-                            <tr>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                            </tr>
-                            <tr>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                            </tr>
-                            <tr>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                            </tr>
-                            <tr>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                            </tr>
-                            <tr>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                            </tr>
-                            <tr>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                            </tr>
-                            <tr>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                            </tr>
-                            <tr>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                            </tr>
-                            <tr>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                            </tr>
-                            <tr>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                            </tr>
-                            <tr>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                            </tr>
-                            <tr>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                            </tr>
-                            <tr>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                                <td>Test</td>
-                            </tr>
+                            <?php } ?>
                         </tbody>
                     </table>
                 </div>

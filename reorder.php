@@ -20,7 +20,21 @@
 
                 <ul id="navbar-nav" class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link " href="#">Logout</a>
+                        <a class="nav-link" href="dashboard.php">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="insert_record.php">Insert</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="update_record.php">Update</a>
+                    </li>
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="reorder.php">Re-order</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php">Logout</a>
                     </li>
                 </ul>
             </nav>
@@ -32,20 +46,7 @@
             </div>
 
             <div class="main-body">
-                <div class="action">
-                    <ul id="action-nav">
-                        <li>
-                            <a href="insert_record.html"><button class="btn btn-primary">Insert New Record</button></a>
-                        </li>
-                        <li>
-                            <a href="update_record.html"><button class="btn btn-success">Update Existing
-                                    Record</button></a>
-                        </li>
-                        <li>
-                            <a href="dashboard.php"><button class="btn btn-warning">Go to Home</button></a>
-                        </li>
-                    </ul>
-                </div>
+
             </div>
         </div>
         <div class="footer">
