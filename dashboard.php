@@ -1,3 +1,6 @@
+<?php
+    include("session.php");
+?>
 <!DOCTYPE html>
 <html>
 
@@ -20,7 +23,7 @@
 
                 <ul id="navbar-nav" class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link " href="#">Logout</a>
+                        <a class="nav-link " href="logout.php">Logout</a>
                     </li>
                 </ul>
             </nav>
@@ -28,7 +31,7 @@
 
         <div class="container">
             <div class="user-header">
-                <h1 class="header-welcome-msg">Welcome <b>User</b></h1>
+                <h1 class="header-welcome-msg">Welcome <b><?php echo $login_session; ?></b></h1>
                 <hr class="hr1">
             </div>
 

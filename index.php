@@ -1,3 +1,20 @@
+<?php
+   include("config.php");
+   session_start();   
+    if($_SERVER["REQUEST_METHOD"] == "POST") {       
+        if(isset($_POST['btnLogin'])){
+                        $result = mysqli_query($con, "SELECT * FROM tblusers WHERE username = '".$_POST['username']."' and pass = '".$_POST['password']."'");
+            $row = mysqli_fetch_array($result, MYSQLI_ASSOC);                                    
+            $count = mysqli_num_rows($result);                              
+            if($count == 1) { 
+                $_SESSION['login_user'] = $_POST['username'];                                                                  
+                header("Location: dashboard.php");                
+            } else {                
+                echo "<script>alert('Your Login Name or Password is invalid')</script>";
+            }
+        }      
+    }
+?>
 <!DOCTYPE html>
 <html>
 
@@ -23,22 +40,22 @@
             <form action="#" method="POST">
                 <div class="form-group">
                     <label>Username: </label>
-                    <input type="text" name="usename" placeholder="Enter your username" class="form-control" />
+                    <input type="text" name="username" placeholder="Enter your username" class="form-control" />
                 </div>
                 <div class="form-group">
                     <label>Password: </label>
                     <input type="password" name="password" placeholder="Enter your password" class="form-control" />
                 </div>
-                <div class="form-group">
-                    <a href="">Forgot Password?</a>
-                </div>
+
                 <div class="form-group btnLogin">
                     <input type="submit" name="btnLogin" value="Login" class="btn btn-primary form-control w-50" />
                 </div>
                 <hr class="hr1">
-                <div class="form-group btnLogin">
-                    <a href=""><button class="btn btn-outline-primary">Does not have an Account?</button></a>
+                <div class="form-group btnLogin" style="justify-content: space-between;">
+                    <a href="">Forgot Password?</a>
+                    <a href="register.php">Does not have an Account?</a>
                 </div>
+
             </form>
         </div>
     </div>

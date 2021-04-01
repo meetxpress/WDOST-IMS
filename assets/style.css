@@ -1,3 +1,14 @@
+/* f0f5f9
+light grey
+
+c9d6df
+grey
+
+52616b
+dark grey
+
+1e2022
+black */
 html, body{
     margin: 0;
     padding: 0;
@@ -6,8 +17,7 @@ html, body{
     background-color: #fff;
 }
 /* ======================================index page====================================== */
-.index-body center h2{
-    margin-top: 20vh;
+.index-body center h2{    
     position: relative;
 }
 .parent{    
@@ -27,10 +37,24 @@ html, body{
     justify-content: center;    
 }
 
+/* ======================================index page====================================== */
+.reg-parent{    
+    display: flex;    
+    justify-content: center;        
+    align-items: center;        
+    overflow: hidden;    
+}
+.reg-child{
+    width: 40%;      
+    background-color: #f0f5f9;     
+    padding: 25px;     
+    border: 3px solid black;    
+}
+
 /* ======================================Layout page====================================== */
 .container{    
     min-width: 95%;
-    background-color: #f0f5f9;      
+    background-color: #f0f5f9;  
 }
 .header-welcome-msg{
     padding: 10px;
@@ -51,24 +75,28 @@ html, body{
 .footer{    
     background-color: aliceblue;    
     text-align: center;    
-    line-height: 50px;    
-    margin-top: 30px;            
+    line-height: 35px;
+    height: 35px;    
+    border: 1px solid black;
+    margin-top: 50px;            
     bottom: 0;
-    width: 100%;    
+    width: 100%;       
     position: relative;
 } 
 
 /* ======================================Dashboard page====================================== */
+.display-data{
+    padding-bottom: 35px;
+}
+
+
+/* ======================================Insert page====================================== */
 #insert-form{
     width: 100%;    
 }
 #insert-form .row{
     justify-content: space-evenly;
 }
-
-
-/* ======================================Insert page====================================== */
-
 
 
 /* ======================================Update page====================================== */
