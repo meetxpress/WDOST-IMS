@@ -2,7 +2,7 @@
     include("session.php");
     if(isset($_POST['btnInsert'])){
         if($con){
-            $res = mysqli_query($con, "INSERT INTO tblproducts(uid, pname, category, descrip,	pdate, price, qty) VALUES($login_id, '".$_POST['prod_name']."', '".$_POST['prod_cate']."', '".$_POST['prod_desc']."', '".$_POST['prod_purdate']."', ".$_POST['prod_price'].", ".$_POST['prod_qty'].")");
+            $res = mysqli_query($con, "INSERT INTO tblproducts(uid, pname, category, descrip, pdate, price, qty) VALUES($login_id, '".$_POST['prod_name']."', '".$_POST['prod_cate']."', '".$_POST['prod_desc']."', '".$_POST['prod_purdate']."', ".$_POST['prod_price'].", ".$_POST['prod_qty'].")");
             if(!$res){
                 echo ("<h1>Dead!</h1>");	
             } else{
