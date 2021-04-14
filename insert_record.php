@@ -1,19 +1,20 @@
 <?php
-include("session.php");
-if (isset($_POST['btnInsert'])) {
-    if ($con) {
-        $res = mysqli_query($con, "INSERT INTO tblproducts(uid, pname, category, descrip, pdate, price, qty) VALUES($login_id, '" . $_POST['prod_name'] . "', '" . $_POST['prod_cate'] . "', '" . $_POST['prod_desc'] . "', '" . $_POST['prod_purdate'] . "', " . $_POST['prod_price'] . ", " . $_POST['prod_qty'] . ")");
-        if (!$res) {
-            echo ("<h1>Dead!</h1>");
+    include("session.php");
+
+    if (isset($_POST['btnInsert'])) {
+        if ($con) {
+            $res = mysqli_query($con, "INSERT INTO tblproducts(uid, pname, category, descrip, pdate, price, qty, relevel) VALUES($login_id, '" . $_POST['prod_name'] . "', '" . $_POST['prod_cate'] . "', '" . $_POST['prod_desc'] . "', '" . $_POST['prod_purdate'] . "', " . $_POST['prod_price'] . ", " . $_POST['prod_qty'] . ", " . $_POST['prod_relevel'] . ")");
+            if (!$res) {
+                echo ("<h1>Dead!</h1>");
+            } else {
+                echo "<script>alert('Registration has been done Successfully.');
+                    // window.location.replace('index.php');
+                    </script>";
+            }
         } else {
-            echo "<script>alert('Registration has been done Successfully.');
-                // window.location.replace('login.php');
-                </script>";
+            echo "Can't connect!";
         }
-    } else {
-        echo "Can't connect!";
     }
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -106,6 +107,12 @@ if (isset($_POST['btnInsert'])) {
                                         <label for="prod_name">Product Quantity</label>
                                         <input type="text" name="prod_qty" placeholder="Item Quantity" maxlength="5"
                                             class="form-control" />
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12 form-group">
+                                        <label for="prod_name">Product Reorder Level</label>
+                                        <input type="text" name="prod_relevel" placeholder="Item Reorder Level"
+                                            maxlength="5" class="form-control" />
                                     </div>
 
                                     <div class="col-lg-12 col-md-12 form-group pb-3">

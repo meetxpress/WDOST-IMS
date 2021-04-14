@@ -1,3 +1,7 @@
+<?php
+    include("session.php");    
+    
+?>
 <!DOCTYPE html>
 <html>
 
@@ -90,6 +94,12 @@
                                         <label for="prod_name">Product Quantity</label>
                                         <input type="text" name="prod_qty" placeholder="Item Quantity" maxlength="5"
                                             class="form-control" />
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12 form-group">
+                                        <label for="prod_name">Product Reorder Level</label>
+                                        <input type="text" name="prod_relevel" placeholder="Item Reorder Level"
+                                            maxlength="5" class="form-control" />
                                     </div>
 
                                     <div class="col-lg-12 col-md-12 form-group pb-3">

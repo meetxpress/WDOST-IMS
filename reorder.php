@@ -1,3 +1,7 @@
+<?php
+    include("session.php");
+    
+?>
 <!DOCTYPE html>
 <html>
 
@@ -14,6 +18,7 @@
 
 <body>
     <div class="main-container">
+
         <div class="navigation-bar">
             <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
                 <a class="navbar-brand ml-3" href="#">Inventory Management System</a>

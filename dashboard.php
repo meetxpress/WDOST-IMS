@@ -1,5 +1,5 @@
 <?php
-    include("session.php");
+include("session.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,11 +29,11 @@
                         <a class="nav-link" href="insert_record.php">Insert</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="update_record.html">Update</a>
+                        <a class="nav-link" href="update_record.php">Update</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="reorder.html">Re-order</a>
+                        <a class="nav-link" href="reorder.php">Re-order</a>
                     </li>
 
                     <li class="nav-item">
@@ -61,16 +61,17 @@
                             <th>Purchase Date</th>
                             <th>Price</th>
                             <th>Quantity</th>
+                            <th>Reorder Level</th>
                         </thead>
                         <tbody>
-                            <?php                            
+                            <?php
                                 $sql_query = "SELECT * FROM tblproducts where uid = '$login_id'";
-                                $resultset = mysqli_query($con, $sql_query) or die("database error:". mysqli_error($conn));
-                                $i=0;
-                                while( $row = mysqli_fetch_assoc($resultset) ) {
+                                $resultset = mysqli_query($con, $sql_query) or die("database error:" . mysqli_error($conn));
+                                $i = 0;
+                                while ($row = mysqli_fetch_assoc($resultset)) {
                             ?>
                             <tr>
-                                <td><?php echo ++$i; ?></td>
+                                <td><?php echo "0" . ++$i; ?></td>
                                 <td><?php echo $row['pid'] ?></td>
                                 <td><?php echo $row['pname'] ?></td>
                                 <td><?php echo $row['category'] ?></td>
@@ -78,6 +79,7 @@
                                 <td><?php echo $row['pdate'] ?></td>
                                 <td><?php echo $row['price'] ?></td>
                                 <td><?php echo $row['qty'] ?></td>
+                                <td><?php echo $row['relevel'] ?></td>
                             </tr>
                             <?php } ?>
                         </tbody>
@@ -86,7 +88,7 @@
             </div>
         </div>
 
-        <div class="footer">
+        <div class=" footer">
             <p>Developed By <b>20MCA085</b> & <b>20MCA135</b></p>
         </div>
 
