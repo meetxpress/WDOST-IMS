@@ -44,7 +44,65 @@
                 <h1 class="header-welcome-msg">Update Existing Record</h1>
                 <hr class="hr1">
             </div>
-            <div class="main-body"></div>
+            <div class="main-body">
+                <form id="insert-form">
+                    <!-- action="#" method="POST"> -->
+                    <div class="row">
+                        <div class="col-lg-5 col-md-6 form-group">
+                            <fieldset class="form-control pb-1">
+                                <legend>Product Details:</legend>
+                                <div class="container">
+                                    <div class="col-lg-12 col-md-12 form-group">
+                                        <label for="prod_name">Product Name</label>
+                                        <input type="text" name="prod_name" placeholder="Item Name"
+                                            class="form-control" />
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12 form-group">
+                                        <label for="prod_name">Product Description</label>
+                                        <input type="text" name="prod_desc" placeholder="Item Description"
+                                            class="form-control" />
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12 form-group">
+                                        <label for="prod_name">Product Category</label>
+                                        <select name="prod_cate" class="form-control">
+                                            <option disabled selected>--- Select ---</option>
+                                            <option>Solid Product</option>
+                                            <option>Liquid Product</option>
+                                            <option>Semi-Solid Product</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12 form-group">
+                                        <label for="prod_name">Product Purchase date</label>
+                                        <input type="date" name="prod_purdate" placeholder="Item Purchase Date"
+                                            class="form-control" />
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12 form-group">
+                                        <label for="prod_name">Product Price</label>
+                                        <input type="text" name="prod_price" placeholder="Item Price" maxlength="5"
+                                            class="form-control" />
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12 form-group">
+                                        <label for="prod_name">Product Quantity</label>
+                                        <input type="text" name="prod_qty" placeholder="Item Quantity" maxlength="5"
+                                            class="form-control" />
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12 form-group pb-3">
+                                        <label></label>
+                                        <input type="submit" name="btnInsert" value="Update Product"
+                                            class="btn btn-primary form-control" />
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
         <div class="footer">
             <p>Developed By <b>20MCA085</b> & <b>20MCA135</b></p>

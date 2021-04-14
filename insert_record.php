@@ -1,19 +1,19 @@
 <?php
-    include("session.php");
-    if(isset($_POST['btnInsert'])){
-        if($con){
-            $res = mysqli_query($con, "INSERT INTO tblproducts(uid, pname, category, descrip, pdate, price, qty) VALUES($login_id, '".$_POST['prod_name']."', '".$_POST['prod_cate']."', '".$_POST['prod_desc']."', '".$_POST['prod_purdate']."', ".$_POST['prod_price'].", ".$_POST['prod_qty'].")");
-            if(!$res){
-                echo ("<h1>Dead!</h1>");	
-            } else{
-                echo "<script>alert('Registration has been done Successfully.');
+include("session.php");
+if (isset($_POST['btnInsert'])) {
+    if ($con) {
+        $res = mysqli_query($con, "INSERT INTO tblproducts(uid, pname, category, descrip, pdate, price, qty) VALUES($login_id, '" . $_POST['prod_name'] . "', '" . $_POST['prod_cate'] . "', '" . $_POST['prod_desc'] . "', '" . $_POST['prod_purdate'] . "', " . $_POST['prod_price'] . ", " . $_POST['prod_qty'] . ")");
+        if (!$res) {
+            echo ("<h1>Dead!</h1>");
+        } else {
+            echo "<script>alert('Registration has been done Successfully.');
                 // window.location.replace('login.php');
-                </script>";                     
-            }
-        } else{
-            echo "Can't connect!";
+                </script>";
         }
+    } else {
+        echo "Can't connect!";
     }
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -65,44 +65,56 @@
                 <form id="insert-form" action="#" method="POST">
                     <div class="row">
                         <div class="col-lg-5 col-md-6 form-group">
-                            <label for="prod_name">Product Name</label>
-                            <input type="text" name="prod_name" placeholder="Item Name" class="form-control" />
-                        </div>
-                        <div class="col-lg-5 col-md-6 form-group">
-                            <label for="prod_name">Product Category</label>
-                            <select name="prod_cate" class="form-control">
-                                <option disabled selected>--- Select ---</option>
-                                <option>Solid Product</option>
-                                <option>Liquid Product</option>
-                                <option>Semi-Solid Product</option>
-                            </select>
-                        </div>
+                            <fieldset class="form-control pb-1">
+                                <legend>Product Details:</legend>
+                                <div class="container">
+                                    <div class="col-lg-12 col-md-12 form-group">
+                                        <label for="prod_name">Product Name</label>
+                                        <input type="text" name="prod_name" placeholder="Item Name"
+                                            class="form-control" />
+                                    </div>
 
-                        <div class="col-lg-5 col-md-6 form-group">
-                            <label for="prod_name">Product Description</label>
-                            <input type="text" name="prod_desc" placeholder="Item Description" class="form-control" />
-                        </div>
-                        <div class="col-lg-5 col-md-6 form-group">
-                            <label for="prod_name">Product Purchase date</label>
-                            <input type="date" name="prod_purdate" placeholder="Item Purchase Date"
-                                class="form-control" />
-                        </div>
+                                    <div class="col-lg-12 col-md-12 form-group">
+                                        <label for="prod_name">Product Description</label>
+                                        <input type="text" name="prod_desc" placeholder="Item Description"
+                                            class="form-control" />
+                                    </div>
 
-                        <div class="col-lg-5 col-md-6 form-group">
-                            <label for="prod_name">Product Price</label>
-                            <input type="text" name="prod_price" placeholder="Item Price" maxlength="5"
-                                class="form-control" />
-                        </div>
-                        <div class="col-lg-5 col-md-6 form-group">
-                            <label for="prod_name">Product Quantity</label>
-                            <input type="text" name="prod_qty" placeholder="Item Quantity" maxlength="5"
-                                class="form-control" />
-                        </div>
+                                    <div class="col-lg-12 col-md-12 form-group">
+                                        <label for="prod_name">Product Category</label>
+                                        <select name="prod_cate" class="form-control">
+                                            <option disabled selected>--- Select ---</option>
+                                            <option>Solid Product</option>
+                                            <option>Liquid Product</option>
+                                            <option>Semi-Solid Product</option>
+                                        </select>
+                                    </div>
 
-                        <div class="col-lg-5 col-md-6 form-group">
-                            <label></label>
-                            <input type="submit" name="btnInsert" value="Insert Product"
-                                class="btn btn-primary form-control" />
+                                    <div class="col-lg-12 col-md-12 form-group">
+                                        <label for="prod_name">Product Purchase date</label>
+                                        <input type="date" name="prod_purdate" placeholder="Item Purchase Date"
+                                            class="form-control" />
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12 form-group">
+                                        <label for="prod_name">Product Price</label>
+                                        <input type="text" name="prod_price" placeholder="Item Price" maxlength="5"
+                                            class="form-control" />
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12 form-group">
+                                        <label for="prod_name">Product Quantity</label>
+                                        <input type="text" name="prod_qty" placeholder="Item Quantity" maxlength="5"
+                                            class="form-control" />
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12 form-group pb-3">
+                                        <label></label>
+                                        <input type="submit" name="btnInsert" value="Insert Product"
+                                            class="btn btn-primary form-control" />
+                                    </div>
+                                </div>
+                            </fieldset>
                         </div>
                     </div>
                 </form>
