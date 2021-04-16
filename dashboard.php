@@ -1,5 +1,9 @@
 <?php
 include("session.php");
+if ($login_session == "") {
+    header("location:index.php");
+} else {
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -65,22 +69,22 @@ include("session.php");
                         </thead>
                         <tbody>
                             <?php
-                                $sql_query = "SELECT * FROM tblproducts where uid = '$login_id'";
-                                $resultset = mysqli_query($con, $sql_query) or die("database error:" . mysqli_error($conn));
-                                $i = 0;
-                                while ($row = mysqli_fetch_assoc($resultset)) {
+                            $sql_query = "SELECT * FROM tblproducts where uid = '$login_id'";
+                            $resultset = mysqli_query($con, $sql_query) or die("database error:" . mysqli_error($conn));
+                            $i = 0;
+                            while ($row = mysqli_fetch_assoc($resultset)) {
                             ?>
-                            <tr>
-                                <td><?php echo "0" . ++$i; ?></td>
-                                <td><?php echo $row['pid'] ?></td>
-                                <td><?php echo $row['pname'] ?></td>
-                                <td><?php echo $row['category'] ?></td>
-                                <td><?php echo $row['descrip'] ?></td>
-                                <td><?php echo $row['pdate'] ?></td>
-                                <td><?php echo $row['price'] ?></td>
-                                <td><?php echo $row['qty'] ?></td>
-                                <td><?php echo $row['relevel'] ?></td>
-                            </tr>
+                                <tr>
+                                    <td><?php echo "0" . ++$i; ?></td>
+                                    <td><?php echo $row['pid'] ?></td>
+                                    <td><?php echo $row['pname'] ?></td>
+                                    <td><?php echo $row['category'] ?></td>
+                                    <td><?php echo $row['descrip'] ?></td>
+                                    <td><?php echo $row['pdate'] ?></td>
+                                    <td><?php echo $row['price'] ?></td>
+                                    <td><?php echo $row['qty'] ?></td>
+                                    <td><?php echo $row['relevel'] ?></td>
+                                </tr>
                             <?php } ?>
                         </tbody>
                     </table>

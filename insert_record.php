@@ -1,6 +1,8 @@
 <?php
-    include("session.php");
-
+include("session.php");
+if ($login_session == "") {
+    header("location:index.php");
+} else {
     if (isset($_POST['btnInsert'])) {
         if ($con) {
             $res = mysqli_query($con, "INSERT INTO tblproducts(uid, pname, category, descrip, pdate, price, qty, relevel) VALUES($login_id, '" . $_POST['prod_name'] . "', '" . $_POST['prod_cate'] . "', '" . $_POST['prod_desc'] . "', '" . $_POST['prod_purdate'] . "', " . $_POST['prod_price'] . ", " . $_POST['prod_qty'] . ", " . $_POST['prod_relevel'] . ")");
@@ -8,13 +10,16 @@
                 echo ("<h1>Dead!</h1>");
             } else {
                 echo "<script>alert('Registration has been done Successfully.');
-                    // window.location.replace('index.php');
-                    </script>";
+                        // window.location.replace('index.php');
+                        </script>";
             }
         } else {
             echo "Can't connect!";
         }
     }
+}
+
+
 ?>
 <!DOCTYPE html>
 <html>

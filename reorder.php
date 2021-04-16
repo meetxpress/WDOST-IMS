@@ -1,6 +1,9 @@
 <?php
-    include("session.php");
-    
+include("session.php");
+if ($login_session == "") {
+    header("location: logout.php");
+} else {
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,7 +16,6 @@
     <link rel="stylesheet" href="assets/style.css">
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/bootstrap/css/font-awesome.min.css">
-
 </head>
 
 <body>
@@ -51,7 +53,52 @@
             </div>
 
             <div class="main-body">
-
+                <table class="table table-bordered table-hover">
+                    <thead class="thead-dark">
+                        <th>Sr. No</th>
+                        <th>Product Id</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Quantity</th>
+                        <th>Reorder Level</th>
+                        <th>Reordering Quantity</th>
+                        <th>Operation</th>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $sql_query = "SELECT * FROM tblproducts where uid = '$login_id'";
+                        $resultset = mysqli_query($con, $sql_query) or die("database error:" . mysqli_error($conn));
+                        $i = 0;
+                        while ($row = mysqli_fetch_assoc($resultset)) {
+                        ?>
+                        <tr>
+                            <td><?php echo "0" . ++$i; ?></td>
+                            <td><?php echo $row['pid'] ?></td>
+                            <td><?php echo $row['pname'] ?></td>
+                            <td><?php echo $row['category'] ?></td>
+                            <td><?php echo $row['qty'] ?></td>
+                            <td><?php echo $row['relevel'] ?></td>
+                            <td>
+                                <form action="#" method="post">
+                                    <input type="text" name="txtval_<?php echo $row['pid'] ?>"
+                                        placeholder="Enter your quantity.">
+                            </td>
+                            <td>
+                                <input type="submit" name="btn_<?php echo $row['pid'] ?>" value="Re-Order">
+                                </form>
+                            </td>
+                        </tr>
+                        <?php                             
+                                  
+                        $id = "bnt".$row['pid'];
+                        if(isset($_POST[$id])){
+                            echo "<h1>In</h1>";
+                        }
+                            //echo "<script> alert('Got the vals');</script>";
+                        }                 
+                        ?>
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="footer">
