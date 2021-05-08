@@ -35,11 +35,7 @@ if ($login_session == "") {
                     <li class="nav-item">
                         <a class="nav-link" href="update_record.php">Update</a>
                     </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="reorder.php">Re-order</a>
-                    </li>
-
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="logout.php">Logout</a>
                     </li>

@@ -1,24 +1,24 @@
 <?php
-include("session.php");
-if ($login_session == "") {
-    header("location:index.php");
-} else {
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (isset($_POST['btnLogin'])) {
-            // $result = mysqli_query($con, "SELECT * FROM tblproducts WHERE username = '" . $_POST['username'] . "' and pass = '" . $_POST['password'] . "'");
-            // $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-            // $count = mysqli_num_rows($result);
-            // if ($count == 1) {
-            //     $_SESSION['login_user'] = $_POST['username'];
-            //     header("Location: dashboard.php");
-            // } else {
-            //     echo "<script>alert('Your Login Name or Password is invalid')</script>";
-            // }
-
+    include("session.php");
+    if ($login_session == "") {
+        header("location:index.php");
+    } else {   
+        if (isset($_POST['pid'])) {
+            $pid=$_POST['pid'];
+            if(isset($_POST['up_btnUpdate'])){
+                $query = "Update tblproducts set pname = '".$_POST['up_prod_name']."', category = '".$_POST['up_prod_cate']."', descrip = '".$_POST['up_prod_desc']."', pdate = '".$_POST['up_prod_purdate']."', price = '".$_POST['up_prod_price']."', qty = '".$_POST['up_prod_qty']."', relevel = '".$_POST['up_prod_relevel']."' where uid = '$login_id' and pid='".$_POST['pid']."'";
+                if (mysqli_query($con, $query)) {
+                    echo "<script>alert('Record updated successfully');</script>";
+                } else {
+                    echo "<script>alert('Error updating record: '.mysqli_error($con));</script>";                    
+                }                
+            }
+        } else {
+            $pid="";
         }
     }
-}
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -31,7 +31,14 @@ if ($login_session == "") {
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/bootstrap/css/font-awesome.min.css">
     <script src="assets/getdata.js"></script>
+    <script lang="javascript" type="text/javascript">
+        function mySubmission() {
+            document.updateProduct.submit();
+        }
+    </script>
 </head>
+
+
 
 <body>
     <div class="main-container">
@@ -51,10 +58,6 @@ if ($login_session == "") {
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="reorder.php">Re-order</a>
-                    </li>
-
-                    <li class="nav-item">
                         <a class="nav-link" href="logout.php">Logout</a>
                     </li>
                 </ul>
@@ -66,7 +69,7 @@ if ($login_session == "") {
                 <hr class="hr1">
             </div>
             <div class="main-body">
-                <form id="insert-form" action="#" method="POST">
+                <form id="insert-form" name="updateProduct" action="#" method="POST">
                     <div class="row">
                         <div class="col-lg-5 col-md-6 form-group">
                             <fieldset class="form-control pb-1">
@@ -74,33 +77,46 @@ if ($login_session == "") {
                                 <div class="container">
                                     <div class="col-lg-12 col-md-12 form-group">
                                         <label for="prod_name">Select Product</label>
-                                        <select name="prod_cate" class="form-control" onchange="fillUpdate(this.value)">
-                                            <option disabled selected>--- Select ---</option>
+                                        <select name="pid" class="form-control" required onchange="mySubmission()">
+                                            <option value="s">Select...</option>
                                             <?php
-                                            $sql_query = "SELECT * FROM tblproducts where uid = '$login_id'";
-                                            $resultset = mysqli_query($con, $sql_query) or die("database error:" . mysqli_error($conn));
-                                            $i = 0;
-                                            while ($row = mysqli_fetch_assoc($resultset)) {
+                                                $sql_unit="select * from tblproducts where uid = '$login_id' ";                                
+                                                $result_unit=mysqli_query($con, $sql_unit) or die("database error:" . mysqli_error($conn));
+
+                                                if ($result_unit -> num_rows > 0) {
+                                                    while ($row_unit=mysqli_fetch_assoc($result_unit)) {
+                                                        if ($pid==$row_unit['pid']) {
+                                                            echo "<option selected value='".$row_unit['pid']."'>".$row_unit['pname']."</option>";                                                                   
+                                                            $pname=$row_unit['pname'];
+                                                            $pcat=$row_unit['category'];
+                                                            $pdesc=$row_unit['descrip'];
+                                                            $pdate=$row_unit['pdate'];
+                                                            $pprice=$row_unit['price'];
+                                                            $pqty=$row_unit['qty'];
+                                                            $preorder=$row_unit['relevel'];                                                                    
+                                                        } else {
+                                                            echo "<option value='".$row_unit['pid']."'>".$row_unit['pname']."</option>";
+                                                        }
+                                                    }
+                                                }
                                             ?>
-                                            <option value="<?php echo $row['pid'] ?>"><?php echo $row['pname'] ?>
-                                            </option>
-                                            <?php } ?>
                                         </select>
                                     </div>
                                     <div class="col-lg-12 col-md-12 form-group">
                                         <label for="prod_name">Product Name</label>
-                                        <input type="text" name="up_prod_name" placeholder="Item Name"
-                                            class="form-control" />
+                                        <input type="text" name="up_prod_name" value="<?php if (isset($pname)) { echo $pname; } ?>" class="form-control"
+                                            required />
                                     </div>
 
-                                    <!-- <div class="col-lg-12 col-md-12 form-group">
+                                    <div class="col-lg-12 col-md-12 form-group">
                                         <label for="prod_name">Product Description</label>
-                                        <input type="text" name="up_prod_desc" placeholder="Item Description" class="form-control" />
+                                        <input type="text" name="up_prod_desc" value="<?php if (isset($pdesc)) { echo $pdesc; } ?>" class="form-control"
+                                            required />
                                     </div>
 
                                     <div class="col-lg-12 col-md-12 form-group">
                                         <label for="prod_name">Product Category</label>
-                                        <select name="up_prod_cate" class="form-control">
+                                        <select name="up_prod_cate" class="form-control" required>
                                             <option disabled selected>--- Select ---</option>
                                             <option>Solid Product</option>
                                             <option>Liquid Product</option>
@@ -110,24 +126,28 @@ if ($login_session == "") {
 
                                     <div class="col-lg-12 col-md-12 form-group">
                                         <label for="prod_name">Product Purchase date</label>
-                                        <input type="date" name="up_prod_purdate" placeholder="Item Purchase Date" class="form-control" />
+                                        <input type="date" name="up_prod_purdate" value="<?php if (isset($pdate)) { echo $pdate; } ?>" class="form-control"
+                                            required />
                                     </div>
 
                                     <div class="col-lg-12 col-md-12 form-group">
                                         <label for="prod_name">Product Price</label>
-                                        <input type="text" name="up_prod_price" placeholder="Item Price" maxlength="5" class="form-control" />
+                                        <input type="text" name="up_prod_price" value="<?php if (isset($pprice)) { echo $pprice; } ?>" maxlength="5" id="pprice"
+                                            class="form-control" required />
                                     </div>
 
                                     <div class="col-lg-12 col-md-12 form-group">
                                         <label for="prod_name">Product Quantity</label>
-                                        <input type="text" name="up_prod_qty" placeholder="Item Quantity" maxlength="5" class="form-control" />
+                                        <input type="text" name="up_prod_qty" value="<?php if (isset($pqty)) { echo $pqty; } ?>" maxlength="5"
+                                            class="form-control" required />
                                     </div>
 
                                     <div class="col-lg-12 col-md-12 form-group">
                                         <label for="prod_name">Product Reorder Level</label>
-                                        <input type="text" name="up_prod_relevel" placeholder="Item Reorder Level" maxlength="5" class="form-control" />
+                                        <input type="text" name="up_prod_relevel" value="<?php if (isset($preorder)) { echo $preorder; } ?>" maxlength="5"
+                                            class="form-control" required />
                                     </div>
--->
+
                                     <div class="col-lg-12 col-md-12 form-group pb-3">
                                         <label></label>
                                         <input type="submit" name="up_btnUpdate" value="Update Product"
@@ -143,7 +163,6 @@ if ($login_session == "") {
         <div class="footer">
             <p>Developed By <b>20MCA085</b> & <b>20MCA135</b></p>
         </div>
-
     </div>
     <script src="assets/main.js"></script>
     <script src="assets/bootstrap/js/jquery.min.js"></script>

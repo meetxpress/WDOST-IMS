@@ -52,10 +52,6 @@ if ($login_session == "") {
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="reorder.php">Re-order</a>
-                    </li>
-
-                    <li class="nav-item">
                         <a class="nav-link" href="logout.php">Logout</a>
                     </li>
                 </ul>
