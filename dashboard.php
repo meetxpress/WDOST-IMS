@@ -34,8 +34,7 @@ if ($login_session == "") {
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="update_record.php">Update</a>
-                    </li>
-                    
+                    </li>                    
                     <li class="nav-item">
                         <a class="nav-link" href="logout.php">Logout</a>
                     </li>
@@ -69,6 +68,7 @@ if ($login_session == "") {
                             $resultset = mysqli_query($con, $sql_query) or die("database error:" . mysqli_error($conn));
                             $i = 0;
                             while ($row = mysqli_fetch_assoc($resultset)) {
+                                $col = $row['qty'] < $row['relevel']?"red":"";                                
                             ?>
                                 <tr>
                                     <td><?php echo "0" . ++$i; ?></td>
@@ -79,7 +79,7 @@ if ($login_session == "") {
                                     <td><?php echo $row['pdate'] ?></td>
                                     <td><?php echo $row['price'] ?></td>
                                     <td><?php echo $row['qty'] ?></td>
-                                    <td><?php echo $row['relevel'] ?></td>
+                                    <td style="background-color: <?php echo $col; ?>"><?php echo $row['relevel'] ?></td>
                                 </tr>
                             <?php } ?>
                         </tbody>
