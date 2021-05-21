@@ -13,6 +13,14 @@
                     echo "<script>alert('Error updating record: '.mysqli_error($con));</script>";                    
                 }                
             }
+            if(isset($_POST['up_btnDelete'])){                     
+                $query = "delete from tblproducts where uid = '$login_id' and pid='".$_POST['pid']."'";
+                if (mysqli_query($con, $query)) {
+                    echo "<script>alert('Record Deleted successfully');</script>";
+                } else {
+                    echo "<script>alert('Error Deleting record: '.mysqli_error($con));</script>";
+                }
+            }
         } else {
             $pid="";
         }
@@ -37,9 +45,6 @@
         }
     </script>
 </head>
-
-
-
 <body>
     <div class="main-container">
         <div class="navigation-bar">
@@ -148,10 +153,12 @@
                                             class="form-control" required />
                                     </div>
 
-                                    <div class="col-lg-12 col-md-12 form-group pb-3">
-                                        <label></label>
+                                    <div class="col-lg-12 col-md-12 form-group">
                                         <input type="submit" name="up_btnUpdate" value="Update Product"
-                                            class="btn btn-primary form-control" />
+                                            class="btn btn-primary form-control" />                                                                                
+                                        <br><br>
+                                        <input type="submit" name="up_btnDelete" value="Delete Product"
+                                            class="btn btn-primary form-control" />                         
                                     </div>
                                 </div>
                             </fieldset>
